@@ -4,7 +4,7 @@ const initialState = {
   articles: []
 }
 
-rootReducer = (state = initialState, action) => {
+const rootReducer = (state = initialState, action) => {
   if (action.type === ADD_ARTICLE) {
     return Object.assign({}, state, {
       articles: state.articles.concat(action.payload)
