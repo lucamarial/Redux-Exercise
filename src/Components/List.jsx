@@ -1,11 +1,22 @@
 import React from 'react'
 
-const List = () => {
+const List = ({ articles }) => {
   return (
     <>
       <h2>Articles</h2>
+      <ul>
+        {articles.map(article => (
+          <li key={article.id}>{article.title}</li>
+        ))}
+      </ul>
     </>
   )
 }
 
-export default List
+const mapStateToProps = state => {
+  return {
+    articles: state.articles
+  }
+}
+
+export default connect(mapStateToProps)(List)
