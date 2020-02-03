@@ -1,17 +1,25 @@
 import React, { useState } from 'react'
+import { connect } from 'react-redux'
+import { addArticle } from '../redux/actions/index'
 
-const Form = () => {
+const Form = props => {
   const [title, setTitle] = useState('')
 
   const handleChange = e => {
     setTitle(e.target.value)
   }
 
+  const handleSubmit = e => {
+    e.preventDefault()
+    props.dispatch(addArticle({ title }))
+    setTitle('')
+  }
+
   return (
     <>
       <h2>Add a new article</h2>
 
-      <form>
+      <form onSubmit={handleSubmit}>
         <input
           type='text'
           id='title'
@@ -25,4 +33,13 @@ const Form = () => {
   )
 }
 
-export default Form
+const mapDispatchToProps = dispatch => {
+  return {
+    dispatch
+  }
+}
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Form)
