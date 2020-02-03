@@ -1,4 +1,4 @@
-import { ADD_ARTICLE } from '../constants/action-types'
+import { ADD_ARTICLE, DATA_LOADED } from '../constants/action-types'
 
 export const addArticle = (payload) => {
   return { type: ADD_ARTICLE, payload }
@@ -10,7 +10,7 @@ export const getData = () => {
       .then(response => response.json())
       .then(json => {
         dispatch({
-          type: 'DATA_LOADED',
+          type: DATA_LOADED,
           payload: json
         })
       })
