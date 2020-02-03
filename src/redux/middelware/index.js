@@ -18,3 +18,14 @@ export const forbiddenWordsMiddelware = ({ dispatch }) => {
     }
   }
 }
+
+export const blankFieldsMiddelware = ({ dispatch }) => {
+  return next => {
+    return action => {
+      if (action.type === ADD_ARTICLE && action.payload.title === '') {
+        return dispatch({ type: 'CANNOT_BE_BLANK'})
+      }
+      return next(action)
+    }
+  }
+}
